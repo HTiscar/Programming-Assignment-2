@@ -1,3 +1,17 @@
+## Description of functions 
+
+# The script consists of two functions, que first one which covers a list 
+# of anonymous functions that will be called to solve the inverse matrix and 
+# save the result to cache. 
+
+# The second function will employ an if clause in order to evaluate if the 
+# matrix was been solved before, and if it is the case it will return the 
+# value stored in cache. 
+
+## Write a short comment describing this function.
+
+# Function makeCacheMatrix(): Lists of anonymous functions that will solve the
+# matrix and will save the result in cache. 
 makeCacheMatrix <- function(x = matrix()){
   im <- NULL
   
@@ -23,11 +37,13 @@ makeCacheMatrix <- function(x = matrix()){
        getinverse = getinverse)
 }
 
+# Function cacheSolve(): It evaluates if the value for the calculation
+# of the inverse matrix is in cache and, if it is so, returns it. 
 cacheSolve <- function(x, ...) {
   im <- x$getinverse()
   
   # Conditional to determine if the is data of the calculation in cache
-  if(!is.null(m)){
+  if(!is.null(im)){
     message("getting catched data")
     return(im)
   }
@@ -42,3 +58,11 @@ cacheSolve <- function(x, ...) {
   x$setinverse(im)
   im
 }
+
+#Test 
+test <- matrix(c(3, 4, 5, 6), nrow = 2, ncol = 2)
+
+# First time displays the message that it calculates the inverse
+# matrix. Second time it displays the cache valued. 
+a <- makeCacheMatrix(test)
+cacheSolve(a)
